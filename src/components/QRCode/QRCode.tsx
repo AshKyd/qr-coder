@@ -9,8 +9,10 @@ export default function QRCode({ data, errorCorrectionLevel }) {
       setDataUrl("");
       return;
     }
-    // With promises
-    QRLib.toDataURL(data, { errorCorrectionLevel })
+    import("qrcode")
+      .then((module) =>
+        module.default.toDataURL(data, { errorCorrectionLevel })
+      )
       .then(setDataUrl)
       .catch((err) => {
         console.error(err);
