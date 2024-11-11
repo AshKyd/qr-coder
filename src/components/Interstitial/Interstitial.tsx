@@ -27,7 +27,7 @@ export default function Interstitial({ onClose }) {
           <div class="qr-interstitial__container">
             <p>
               The app is built in <a href="https://preactjs.com/">Preact</a> and{" "}
-              <a href="https://vitejs.dev">Vite</a>.
+              <a href="https://github.com/soldair/node-qrcode">node-qrcode</a>.
               <a href="https://github.com/AshKyd/qr-coder">Source code</a> is on
               Github.
             </p>
