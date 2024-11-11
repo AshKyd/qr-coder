@@ -1,0 +1,15 @@
+.qr-interface {
+  display: flex;
+  gap: 1rem;
+}
+.qr-interface > * {
+  padding: 1rem;
+}
+.qr-interface__field {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.qr-interface__field input,
+.qr-interface__field select {
+  display: block;
+}
