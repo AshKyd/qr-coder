@@ -40,7 +40,7 @@ export default defineConfig({
 
         const allRoutes = ["/", ...routes];
 
-        const baseUrl = "https://qrcoder.app"; // Replace with your actual domain
+        const baseUrl = "https://qr.kyd.au"; // Replace with your actual domain
 
         const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
