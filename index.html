@@ -5,6 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#4e277c" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <title>QR Coder</title>
     <meta
       name="description"
@@ -33,5 +35,12 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/index.jsx"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js");
+        });
+      }
+    </script>
   </body>
 </html>
