@@ -1,15 +1,52 @@
-# `create-preact`
+# QR Coder
 
-<h2 align="center">
-  <img height="256" width="256" src="./src/assets/preact.svg">
-</h2>
+A QR code generator built with Preact and Vite.
 
-<h3 align="center">Get started using Preact and Vite!</h3>
+## Features
+
+- **Privacy**: QR codes are generated locally in your browser. Sensitive data remains on your device.
+- **Multiple Formats**: Support for URLs, WiFi credentials, vCards, Calendar events, Locations, Messaging shortcuts, and plain text.
+- **Customizable**: Adjust error correction levels, margins, and colors.
+- **Export**: Save as PNG or SVG in various sizes.
+- **Offline Support**: PWA support for offline use.
 
 ## Getting Started
 
--   `npm run dev` - Starts a dev server at http://localhost:5173/
+### Installation
 
--   `npm run build` - Builds for production, emitting to `dist/`
+1. Clone the repository:
 
--   `npm run preview` - Starts a server at http://localhost:4173/ to test production build locally
+   ```bash
+   git clone https://github.com/AshKyd/qr-coder.git
+   cd qr-coder
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+Production output is in the `dist/` directory.
+
+## Technology Stack
+
+- [Preact](https://preactjs.com/)
+- [Vite](https://vitejs.dev/)
+- [node-qrcode](https://github.com/soldair/node-qrcode)
+- [Bootstrap 5](https://getbootstrap.com/)
+
+## License
+
+MIT License. Doto font is SIL Open Font License.

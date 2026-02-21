@@ -5,14 +5,31 @@ export default function Interstitial({ isOpen, onClose }) {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="QR Coder"
-      subtitle="Professional QR Code Generator"
+      title="About QR Coder"
+      subtitle="Privacy-first QR code generator"
       size="md"
     >
       <div class="qr-interstitial__container">
         <section class="mb-4">
           <p class="small text-muted">
-            This app is built with{" "}
+            <span class="branding">QR Coder</span> generates QR codes locally in
+            your browser. Sensitive data—like WiFi passwords and contact
+            details—stays on your device.
+          </p>
+        </section>
+
+        <section class="mb-4">
+          <h2 class="h6 fw-bold text-uppercase mb-2">Privacy</h2>
+          <p class="small text-muted mb-0">
+            Processing happens locally. It's a private way to generate codes
+            without sending your data to a server.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="h6 fw-bold text-uppercase mb-2">Open Source</h2>
+          <p class="small text-muted mb-0">
+            Built with{" "}
             <a href="https://preactjs.com/" target="_blank" rel="noopener">
               Preact
             </a>{" "}
@@ -24,7 +41,7 @@ export default function Interstitial({ isOpen, onClose }) {
             >
               node-qrcode
             </a>
-            . The source code is on{" "}
+            . View the source or contribute on{" "}
             <a
               href="https://github.com/AshKyd/qr-coder"
               target="_blank"
@@ -33,23 +50,6 @@ export default function Interstitial({ isOpen, onClose }) {
               GitHub
             </a>
             .
-          </p>
-        </section>
-
-        <section class="mb-4">
-          <h2 class="h6 fw-bold text-uppercase mb-2">Privacy & Data</h2>
-          <p class="small text-muted mb-0">
-            Data is never sent to a server. All QR codes are generated locally
-            in your browser. Your URLs, WiFi passwords, and contact info stay on
-            your device.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="h6 fw-bold text-uppercase mb-2">About the codes</h2>
-          <p class="small text-muted mb-0">
-            You can generate as many QR codes as you like. They are permanent
-            and will work forever.
           </p>
         </section>
       </div>
