@@ -1,0 +1,19 @@
+.geo-paste-modal {
+  border: none;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 450px;
+  background: white;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+.geo-paste-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+[data-bs-theme="dark"] .geo-paste-modal {
+  background: #212529;
+  color: white;
+}

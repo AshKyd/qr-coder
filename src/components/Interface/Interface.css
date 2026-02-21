@@ -5,11 +5,41 @@
   transition: all 0.3s ease;
 }
 
+.mode-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  padding: 0.5rem 1rem;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+}
+
+.mode-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 .mode-toggle {
   background: var(--qr-card-bg);
   border-radius: 50px;
   padding: 0.25rem;
   border: 1px solid var(--qr-border);
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.25rem;
 }
 
 .mode-toggle .btn {

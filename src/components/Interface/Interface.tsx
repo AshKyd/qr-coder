@@ -7,6 +7,10 @@ import TextMode from "./Modes/TextMode";
 import UrlMode from "./Modes/UrlMode";
 import WifiMode from "./Modes/WifiMode";
 import ContactMode from "./Modes/ContactMode";
+import CalendarMode from "./Modes/CalendarMode";
+import GeoMode from "./Modes/GeoMode";
+import SmsEmailMode from "./Modes/SmsEmailMode";
+import PhoneMode from "./Modes/PhoneMode";
 import DownloadModal from "../DownloadModal/DownloadModal";
 import SettingsPanel from "./SettingsPanel";
 import Icon from "../Icon/Icon";
@@ -26,31 +30,57 @@ const MODES = [
     icon: "globe",
     component: UrlMode,
     explainer:
-      "Create a QR code for a website link. Optional UTM parameters can be added for tracking clicks from physical placements like flyers or business cards.",
+      "Create a QR code for a website link. Optional UTM parameters can be added for tracking.",
   },
   {
     id: "text",
     label: "Text",
     icon: "text",
     component: TextMode,
-    explainer:
-      "Encode plain text directly into a QR code. When scanned, the device will display the literal text content on the screen.",
+    explainer: "Encode plain text directly into a QR code for literal display.",
   },
   {
     id: "wifi",
     label: "WiFi",
     icon: "wifi",
     component: WifiMode,
-    explainer:
-      "Generate a configuration code for a wireless network. Scanning this allows devices to join the network without manually entering the SSID or password.",
+    explainer: "Generate a configuration code for a wireless network.",
   },
   {
     id: "vcard",
     label: "Contact",
     icon: "contact",
     component: ContactMode,
+    explainer: "Generate a vCard (3.0) file for saving contact information.",
+  },
+  {
+    id: "calendar",
+    label: "Calendar",
+    icon: "calendar",
+    component: CalendarMode,
     explainer:
-      "Generate a vCard (3.0) file. Scanners will recognize this as contact information and prompt the user to save it to their address book.",
+      "Prompts to add an event with title, date, and location to the calendar.",
+  },
+  {
+    id: "geo",
+    label: "Location",
+    icon: "location",
+    component: GeoMode,
+    explainer: "Opens coordinates directly in maps for easy navigation.",
+  },
+  {
+    id: "sms_email",
+    label: "SMS / Email",
+    icon: "email",
+    component: SmsEmailMode,
+    explainer: "Opens messaging apps with recipient and body text pre-filled.",
+  },
+  {
+    id: "phone",
+    label: "Phone",
+    icon: "phone",
+    component: PhoneMode,
+    explainer: "Generates a link to instantly call the encoded phone number.",
   },
 ];
 
@@ -90,19 +120,21 @@ export default function Interface() {
     <div class="container py-4">
       {/* Mode Selector */}
       <div class="row mb-4">
-        <div class="col-12 text-center">
-          <div class="btn-group shadow-sm mode-toggle" role="group">
-            {MODES.map((m) => (
-              <button
-                key={m.id}
-                type="button"
-                class={`btn btn-outline-primary d-inline-flex align-items-center justify-content-center px-3 px-md-4 py-2 ${modeId === m.id ? "active" : ""}`}
-                onClick={() => setModeId(m.id)}
-              >
-                <Icon name={m.icon} className="fs-5 me-sm-2" />
-                <span class="d-none d-sm-inline">{m.label}</span>
-              </button>
-            ))}
+        <div class="col-12">
+          <div class="mode-scroll-container">
+            <div class="mx-auto btn-group shadow-sm mode-toggle" role="group">
+              {MODES.map((m) => (
+                <button
+                  key={m.id}
+                  type="button"
+                  class={`btn btn-outline-primary d-inline-flex align-items-center justify-content-center px-3 px-md-4 py-2 ${modeId === m.id ? "active" : ""}`}
+                  onClick={() => setModeId(m.id)}
+                >
+                  <Icon name={m.icon} className="fs-5 me-sm-2" />
+                  <span class="d-none d-sm-inline">{m.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
