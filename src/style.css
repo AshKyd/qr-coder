@@ -193,6 +193,23 @@ a:focus-visible {
   --bs-btn-disabled-border-color: var(--qr-primary);
 }
 
+.btn-outline-secondary {
+  --bs-btn-color: color-mix(in srgb, var(--qr-text), transparent 25%);
+  --bs-btn-border-color: var(--qr-border);
+  --bs-btn-hover-color: var(--qr-text);
+  --bs-btn-hover-bg: var(--qr-bg);
+  --bs-btn-hover-border-color: var(--qr-primary);
+  --bs-btn-focus-shadow-rgb: 108, 117, 125;
+  --bs-btn-active-color: var(--qr-text);
+  --bs-btn-active-bg: var(--qr-bg);
+  --bs-btn-active-border-color: var(--qr-primary);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.05);
+  --bs-btn-disabled-color: color-mix(in srgb, var(--qr-text), transparent 60%);
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: var(--qr-border);
+  --bs-gradient: none;
+}
+
 .form-check-input:checked {
   background-color: var(--qr-primary);
   border-color: var(--qr-primary);

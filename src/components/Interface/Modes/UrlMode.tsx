@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
+import IconInput from "../IconInput";
 
 interface UrlModeProps {
   onChange: (qrString: string) => void;
@@ -40,17 +41,18 @@ export default function UrlMode({ onChange }: UrlModeProps) {
   return (
     <div class="row g-3">
       <div class="col-12">
-        <label class="form-label fw-semibold">Website URL</label>
-        <input
+        <IconInput
+          label="Website URL"
           type="url"
-          class="form-control form-control-lg"
+          inputClass="form-control-lg"
           placeholder="https://example.com"
           value={urlData.base}
+          icon="globe"
           onClick={(e) => e.currentTarget.select()}
-          onInput={(e) =>
+          onInput={(val) =>
             setUrlData({
               ...urlData,
-              base: e.currentTarget.value,
+              base: val,
             })
           }
         />
@@ -73,9 +75,9 @@ export default function UrlMode({ onChange }: UrlModeProps) {
         </div>
 
         {useUtm && (
-          <div class="row g-3 utm-well">
+          <div class="row g-3 utm-well p-3 mt-2 rounded">
             <div class="col-md-6">
-              <label class="form-label fw-semibold">UTM Source</label>
+              <label class="form-label small fw-bold">UTM Source</label>
               <input
                 type="text"
                 class="form-control"
@@ -89,13 +91,12 @@ export default function UrlMode({ onChange }: UrlModeProps) {
                   })
                 }
               />
-              <div class="x-small text-muted mt-1">
-                The specific origin (e.g., <strong>flyer</strong>,{" "}
-                <strong>business-card</strong>).
+              <div class="form-text x-small mt-1">
+                The specific origin (e.g., flyer).
               </div>
             </div>
             <div class="col-md-6">
-              <label class="form-label fw-semibold">UTM Medium</label>
+              <label class="form-label small fw-bold">UTM Medium</label>
               <input
                 type="text"
                 class="form-control"
@@ -109,13 +110,12 @@ export default function UrlMode({ onChange }: UrlModeProps) {
                   })
                 }
               />
-              <div class="x-small text-muted mt-1">
-                The marketing channel (e.g., <strong>qr</strong>,{" "}
-                <strong>print</strong>).
+              <div class="form-text x-small mt-1">
+                The marketing channel (e.g., qr).
               </div>
             </div>
             <div class="col-12">
-              <label class="form-label fw-semibold">UTM Campaign</label>
+              <label class="form-label small fw-bold">UTM Campaign</label>
               <input
                 type="text"
                 class="form-control"
@@ -129,9 +129,8 @@ export default function UrlMode({ onChange }: UrlModeProps) {
                   })
                 }
               />
-              <div class="x-small text-muted mt-1">
-                The specific promotion or event (e.g.,{" "}
-                <strong>summer-sale</strong>, <strong>grand-opening</strong>).
+              <div class="form-text x-small mt-1">
+                The specific promotion or event (e.g., summer-sale).
               </div>
             </div>
           </div>

@@ -15,6 +15,7 @@ import personIcon from "bootstrap-icons/icons/person.svg?raw";
 import mapIcon from "bootstrap-icons/icons/map.svg?raw";
 import caretDownFillIcon from "bootstrap-icons/icons/caret-down-fill.svg?raw";
 import listIcon from "bootstrap-icons/icons/list.svg?raw";
+import lockIcon from "bootstrap-icons/icons/lock.svg?raw";
 
 const ICON_REGISTRY = {
   globe: globeIcon,
@@ -34,6 +35,7 @@ const ICON_REGISTRY = {
   address: mapIcon,
   "chevron-down": caretDownFillIcon,
   menu: listIcon,
+  lock: lockIcon,
 };
 
 export default function Icon({ name, className = "", style = {}, ...props }) {

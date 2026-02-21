@@ -1,4 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
+import IconInput from "../IconInput";
 
 interface WifiModeProps {
   onChange: (qrString: string) => void;
@@ -25,23 +26,22 @@ export default function WifiMode({ onChange }: WifiModeProps) {
   return (
     <div class="row g-3">
       <div class="col-12">
-        <label class="form-label fw-semibold">Network Name (SSID)</label>
-        <input
-          type="text"
-          class="form-control"
+        <IconInput
+          label="Network Name (SSID)"
+          icon="wifi"
           placeholder="e.g. MyHomeWiFi"
           value={wifi.ssid}
-          onInput={(e) => setWifi({ ...wifi, ssid: e.currentTarget.value })}
+          onInput={(val) => setWifi({ ...wifi, ssid: val })}
         />
       </div>
       <div class="col-12">
-        <label class="form-label fw-semibold">Password</label>
-        <input
+        <IconInput
+          label="Password"
           type="password"
-          class="form-control"
+          icon="lock"
           placeholder="Network Password"
           value={wifi.password}
-          onInput={(e) => setWifi({ ...wifi, password: e.currentTarget.value })}
+          onInput={(val) => setWifi({ ...wifi, password: val })}
         />
       </div>
       <div class="col-md-6">

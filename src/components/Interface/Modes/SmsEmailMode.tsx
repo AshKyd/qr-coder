@@ -34,27 +34,27 @@ export default function SmsEmailMode({ onChange }: SmsEmailModeProps) {
   }, [subMode, recipient, subject, body, onChange]);
 
   return (
-    <div className="sms-email-mode">
-      <div className="btn-group w-100 mb-4 shadow-sm" role="group">
+    <div class="sms-email-mode">
+      <div class="btn-group w-100 mb-4 shadow-sm" role="group">
         <button
           type="button"
-          className={`btn btn-outline-primary py-2 ${subMode === "email" ? "active" : ""}`}
+          class={`btn btn-outline-primary py-2 ${subMode === "email" ? "active" : ""}`}
           onClick={() => setSubMode("email")}
         >
-          <Icon name="email" className="me-2" />
+          <Icon name="email" class="me-2" />
           Email
         </button>
         <button
           type="button"
-          className={`btn btn-outline-primary py-2 ${subMode === "sms" ? "active" : ""}`}
+          class={`btn btn-outline-primary py-2 ${subMode === "sms" ? "active" : ""}`}
           onClick={() => setSubMode("sms")}
         >
-          <Icon name="sms" className="me-2" />
+          <Icon name="sms" class="me-2" />
           SMS
         </button>
       </div>
 
-      <div className="mb-3">
+      <div class="mb-3">
         {subMode === "email" ? (
           <IconInput
             label="Email Address"
@@ -79,33 +79,29 @@ export default function SmsEmailMode({ onChange }: SmsEmailModeProps) {
       </div>
 
       {subMode === "email" && (
-        <div className="mb-3">
-          <label htmlFor="subjectInput" className="form-label small fw-bold">
-            Subject Line
-          </label>
-          <input
-            type="text"
+        <div class="mb-3">
+          <IconInput
+            label="Subject Line"
+            icon="text"
             id="subjectInput"
-            className="form-control"
             placeholder="Feedback for..."
             value={subject}
-            onInput={(e) => setSubject((e.target as HTMLInputElement).value)}
+            onInput={setSubject}
           />
         </div>
       )}
 
-      <div className="mb-3">
-        <label htmlFor="bodyInput" className="form-label small fw-bold">
-          Message Body
-        </label>
-        <textarea
+      <div class="mb-3">
+        <IconInput
+          label="Message Body"
+          icon="text"
+          type="textarea"
           id="bodyInput"
-          className="form-control"
-          rows={3}
           placeholder="Type your message here..."
           value={body}
-          onInput={(e) => setBody((e.target as HTMLTextAreaElement).value)}
-        ></textarea>
+          onInput={setBody}
+          rows={3}
+        />
       </div>
 
       <div className="form-text x-small mt-2">

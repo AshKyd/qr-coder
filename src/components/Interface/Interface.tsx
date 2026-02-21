@@ -135,7 +135,6 @@ export default function Interface({
               <div class="mb-4">
                 <div class="d-flex align-items-center flex-wrap gap-2">
                   <h1 class="h4 mb-0 fw-bold d-inline-flex align-items-center gap-2">
-                    Create
                     <div class="mode-dropdown-header">
                       <button
                         type="button"
@@ -186,7 +185,7 @@ export default function Interface({
                         </div>
                       </Modal>
                     </div>
-                    QR Code
+                    QR Code creator
                   </h1>
                 </div>
                 <p class="text-muted small mt-2 mb-0">{activeMode.explainer}</p>
