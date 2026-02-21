@@ -144,12 +144,13 @@ export default function Interface({
                         aria-haspopup="true"
                         id="modeDropdownButton"
                       >
-                        <Icon name={activeMode.icon} />
-                        {activeMode.label}
+                        <span>{activeMode.label}</span>
                         <Icon
                           name="chevron-down"
-                          className={`ms-1 small transition-all ${showModeDropdown ? "rotate-180" : ""}`}
-                          style={{ width: "12px", height: "12px" }}
+                          style={{
+                            width: "14px",
+                            height: "14px",
+                          }}
                         />
                       </button>
 
@@ -190,6 +191,8 @@ export default function Interface({
                 </div>
                 <p class="text-muted small mt-2 mb-0">{activeMode.explainer}</p>
               </div>
+
+              <hr />
 
               <div class="mb-4">
                 <ModeComponent onChange={setQrValue} />
