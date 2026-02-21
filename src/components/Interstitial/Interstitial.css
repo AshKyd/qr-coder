@@ -1,68 +1,83 @@
 .qr-interstitial {
   position: absolute;
-  z-index: 100;
+  inset: 0;
+  z-index: 1050;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  backdrop-filter: blur(0.2rem);
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.2);
 }
-.qr-interstitial__modal:backdrop {
-  background: rgba(0, 0, 10, 0.3);
-}
+
 .qr-interstitial__modal {
   padding: 0;
-  width: 640px;
-  max-width: 80%;
-  height: 480px;
-  max-height: 80dvh;
-  background: var(--il-background);
-  color: var(--il-color);
-  border: 1px solid var(--il-panel-border);
-  box-shadow: 0 0.5rem 1rem #000;
-  border-radius: 0.3rem;
+  width: 500px;
+  max-width: 90%;
+  max-height: 90dvh;
+  background: var(--qr-card-bg);
+  color: var(--qr-text);
+  border: 1px solid var(--qr-border);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-}
-.qr-interstitial__bar {
-  background: var(--il-panel-background);
-  border-top: 1px solid var(--il-panel-border);
-}
-.qr-interstitial__container {
-  padding: 1rem;
+  margin: auto;
 }
 
-.qr-interstitial h1 {
-  margin: 0;
+.qr-interstitial__modal::backdrop {
+  background: transparent; /* Using parent container for backdrop to allow blur */
 }
 
 .qr-interstitial__top {
-  padding: 1.5rem 1rem 0.2rem;
-  display: flex;
-  gap: 1rem;
-  border-bottom: 1px solid var(--il-panel-border);
-  background: var(--il-toolbar-background);
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--qr-border);
+  background: var(--qr-bg);
+}
+
+.qr-interstitial__top h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--qr-primary);
+}
+
+.qr-interstitial__sub {
+  margin: 0.5rem 0 0;
+  opacity: 0.7;
+  font-weight: 500;
 }
 
 .qr-interstitial__content {
   flex: 1;
-  position: relative;
+  padding: 2rem;
+  overflow-y: auto;
 }
 
-.qr-interstitial__content .qr-interstitial__container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
+.qr-interstitial__container {
+  max-width: 100%;
+}
+
+.qr-interstitial__bar {
+  padding: 1rem 2rem;
+  background: var(--qr-bg);
+  border-top: 1px solid var(--qr-border);
+  display: flex;
+  justify-content: flex-end;
 }
 
 .qr-interstitial button {
-  padding: 0.5rem;
-  min-width: 5.5rem;
-  margin: 0 0 0 auto;
-  display: block;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  border: none;
+  background: var(--qr-primary);
+  color: white;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.qr-interstitial button:hover {
+  opacity: 0.9;
   cursor: pointer;
 }

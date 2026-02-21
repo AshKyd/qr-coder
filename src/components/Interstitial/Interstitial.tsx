@@ -2,26 +2,43 @@ import { useEffect, useRef } from "preact/hooks";
 import "./Interstitial.css";
 
 export default function Interstitial({ onClose }) {
-  const modalEl = useRef();
+  const modalEl = useRef<HTMLDialogElement>(null);
+
   useEffect(() => {
     if (!modalEl.current) return;
-    modalEl.current.showModal();
-  }, [modalEl]);
+
+    // showModal() is necessary for the native <dialog> backdrop and top-layer behavior
+    if (!modalEl.current.open) {
+      modalEl.current.showModal();
+    }
+
+    // Handle the browser's native 'cancel' (Escape key)
+    const handleCancel = (e: Event) => {
+      e.preventDefault();
+      onClose();
+    };
+
+    const dialog = modalEl.current;
+    dialog.addEventListener("cancel", handleCancel);
+    return () => dialog.removeEventListener("cancel", handleCancel);
+  }, [onClose]);
 
   return (
-    <div class="qr-interstitial">
+    <div
+      class="qr-interstitial"
+      onClick={onClose} // Clicking the blurred overlay
+    >
       <dialog
         class="qr-interstitial__modal"
         ref={modalEl}
-        onClick={(e) => {
-          if (e.target === modalEl.current) {
-            onClose();
-          }
-        }}
+        onClick={(e) => e.stopPropagation()} // Prevent clicking inside from closing
       >
         <div class="qr-interstitial__top">
-          <h1>qr</h1>
-          <p class="qr-interstitial__sub">A sprite recolouriser</p>
+          <h1>
+            <span class="qr-toolbar__title-a">qr</span>{" "}
+            <span class="qr-toolbar__title-b">coder</span>
+          </h1>
+          <p class="qr-interstitial__sub">A simple QR code generator</p>
         </div>
         <div class="qr-interstitial__content">
           <div class="qr-interstitial__container">

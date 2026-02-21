@@ -1,42 +1,144 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Modern font stack */
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  --il-color: #222;
-  --il-background: #ffffff;
-  --il-panel-border: #ccc;
-  --il-panel-background: #eee;
-  --il-toolbar-background: linear-gradient(#ccc, #ddd);
+  /* Refined color palette */
+  --bs-primary-rgb: 84, 10, 184;
+  --qr-primary: #540ab8; /* Darker purple for light mode */
+  --qr-bg: #f8f9fa;
+  --qr-text: #212529;
+  --qr-card-bg: #ffffff;
+  --qr-border: #dee2e6;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  accent-color: var(--qr-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bs-primary-rgb: 168, 127, 252;
+    --qr-primary: #a87ffc; /* Lighter purple for dark mode */
+    --qr-bg: #121212;
+    --qr-text: #e9ecef;
+    --qr-card-bg: #1e1e1e;
+    --qr-border: #373b3e;
+  }
 }
 
 body {
   margin: 0;
+  background-color: var(--qr-bg);
+  color: var(--qr-text);
+  min-height: 100dvh;
 }
 
 * {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --il-color: #ccc;
-    --il-background: #1a1a1a;
-    --il-panel-background: #3a3a3c;
-    --il-panel-border: #4a4a4c;
-    --il-toolbar-background: linear-gradient(#3a3a3c, #27272a);
+/* Global Link Styles */
+a {
+  color: var(--qr-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  border-radius: 4px;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: color-mix(in srgb, var(--qr-primary), black 15%);
+}
+
+a:active {
+  color: color-mix(in srgb, var(--qr-primary), black 30%);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--qr-primary);
+  outline-offset: 2px;
+}
+
+/* App container */
+.qr-app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Animations */
+@keyframes pulse-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-.qr-app {
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+.animate-pulse {
+  animation: pulse-fade-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Form control integration */
+.form-control,
+.form-range {
+  background-color: var(--qr-card-bg);
+  border-color: var(--qr-border);
+  color: var(--qr-text);
+}
+
+.form-control:focus {
+  background-color: var(--qr-card-bg);
+  border-color: var(--qr-primary);
+  color: var(--qr-text);
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+[data-bs-theme="dark"] .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Customizing the range slider to match --qr-primary */
+.form-range::-webkit-slider-thumb {
+  background-color: var(--qr-primary);
+}
+
+.form-range::-moz-range-thumb {
+  background-color: var(--qr-primary);
+}
+
+.form-range::-ms-thumb {
+  background-color: var(--qr-primary);
+}
+
+.form-range:focus::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 1px var(--qr-bg),
+    0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.form-range:focus::-moz-range-thumb {
+  box-shadow:
+    0 0 0 1px var(--qr-bg),
+    0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.form-range:focus::-ms-thumb {
+  box-shadow:
+    0 0 0 1px var(--qr-bg),
+    0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
 }
