@@ -22,6 +22,7 @@ export default function TextMode({ onChange }: TextModeProps) {
         placeholder="Type or paste something to encode..."
         rows={4}
         value={text}
+        onClick={(e) => e.currentTarget.select()}
         onInput={(e) => setText(e.currentTarget.value)}
       ></textarea>
     </>

@@ -46,6 +46,7 @@ export default function UrlMode({ onChange }: UrlModeProps) {
           class="form-control form-control-lg"
           placeholder="https://example.com"
           value={urlData.base}
+          onClick={(e) => e.currentTarget.select()}
           onInput={(e) =>
             setUrlData({
               ...urlData,
@@ -80,6 +81,7 @@ export default function UrlMode({ onChange }: UrlModeProps) {
                 class="form-control"
                 placeholder="e.g. flyer"
                 value={urlData.source}
+                onClick={(e) => e.currentTarget.select()}
                 onInput={(e) =>
                   setUrlData({
                     ...urlData,
@@ -99,6 +101,7 @@ export default function UrlMode({ onChange }: UrlModeProps) {
                 class="form-control"
                 placeholder="e.g. qr"
                 value={urlData.medium}
+                onClick={(e) => e.currentTarget.select()}
                 onInput={(e) =>
                   setUrlData({
                     ...urlData,
@@ -118,6 +121,7 @@ export default function UrlMode({ onChange }: UrlModeProps) {
                 class="form-control"
                 placeholder="e.g. launch-event"
                 value={urlData.campaign}
+                onClick={(e) => e.currentTarget.select()}
                 onInput={(e) =>
                   setUrlData({
                     ...urlData,

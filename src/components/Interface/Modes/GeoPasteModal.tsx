@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "preact/hooks";
+import { useState } from "preact/hooks";
+import Modal from "../../Common/Modal/Modal";
 import Icon from "../../Icon/Icon";
 import IconInput from "../IconInput";
-import "./GeoPasteModal.css";
 
 interface GeoPasteModalProps {
   onPaste: (lat: string, lon: string) => void;
@@ -14,23 +14,6 @@ export default function GeoPasteModal({
 }: GeoPasteModalProps) {
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
-  const modalEl = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    if (!modalEl.current) return;
-    if (!modalEl.current.open) {
-      modalEl.current.showModal();
-    }
-
-    const handleCancel = (e: Event) => {
-      e.preventDefault();
-      onClose();
-    };
-
-    const dialog = modalEl.current;
-    dialog.addEventListener("cancel", handleCancel);
-    return () => dialog.removeEventListener("cancel", handleCancel);
-  }, [onClose]);
 
   const handleParse = () => {
     if (!input.trim()) {
@@ -104,58 +87,51 @@ export default function GeoPasteModal({
     }
   };
 
+  const footer = (
+    <button
+      type="button"
+      class="btn btn-primary w-100 py-3 fw-bold"
+      onClick={handleParse}
+    >
+      Extract Coordinates
+    </button>
+  );
+
   return (
-    <div class="qr-download-overlay" onClick={onClose}>
-      <dialog
-        class="geo-paste-modal"
-        ref={modalEl}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div class="modal-header d-flex justify-content-between align-items-center mb-4">
-          <div class="d-flex align-items-center">
-            <Icon name="location" className="me-2 text-primary" />
-            <h2 class="h5 mb-0 fw-bold">Paste Map Link</h2>
+    <Modal
+      isOpen={true}
+      onClose={onClose}
+      title="Paste Map Link"
+      subtitle="Extract coordinates from Apple/Google Maps links"
+      footer={footer}
+      size="md"
+    >
+      <div class="mb-4">
+        <p class="small text-muted mb-4">
+          Paste a link from Apple Maps, Google Maps, or a raw coordinate string
+          to automatically extract the location.
+        </p>
+
+        <IconInput
+          label="Link or Coordinates"
+          icon="globe"
+          placeholder="https://maps.apple.com/..."
+          value={input}
+          onInput={(val) => {
+            setInput(val);
+            setError("");
+          }}
+          type="textarea"
+          rows={3}
+        />
+
+        {error && (
+          <div class="alert alert-danger py-2 px-3 small mt-3 mb-0">
+            <Icon name="location" className="me-2" />
+            {error}
           </div>
-          <button type="button" class="btn-close" onClick={onClose}></button>
-        </div>
-
-        <div class="modal-body">
-          <p class="small text-muted mb-4">
-            Paste a link from Apple Maps, Google Maps, or a raw coordinate
-            string to automatically extract the location.
-          </p>
-
-          <IconInput
-            label="Link or Coordinates"
-            icon="globe"
-            placeholder="https://maps.apple.com/..."
-            value={input}
-            onInput={(val) => {
-              setInput(val);
-              setError("");
-            }}
-            type="textarea"
-            rows={3}
-          />
-
-          {error && (
-            <div class="alert alert-danger py-2 px-3 small mt-3 mb-0">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              {error}
-            </div>
-          )}
-        </div>
-
-        <div class="modal-footer mt-4 border-0 p-0">
-          <button
-            type="button"
-            class="btn btn-primary w-100 py-2 fw-bold"
-            onClick={handleParse}
-          >
-            Extract Coordinates
-          </button>
-        </div>
-      </dialog>
-    </div>
+        )}
+      </div>
+    </Modal>
   );
 }

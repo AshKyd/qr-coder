@@ -14,6 +14,7 @@ import PhoneMode from "./Modes/PhoneMode";
 import DownloadModal from "../DownloadModal/DownloadModal";
 import SettingsPanel from "./SettingsPanel";
 import Icon from "../Icon/Icon";
+import Modal from "../Common/Modal/Modal";
 
 const EC_LEVELS = ["L", "M", "Q", "H"];
 const EC_LABELS = [
@@ -30,28 +31,22 @@ const MODES = [
     icon: "globe",
     component: UrlMode,
     explainer:
-      "Create a QR code for a website link. Optional UTM parameters can be added for tracking.",
-  },
-  {
-    id: "text",
-    label: "Text",
-    icon: "text",
-    component: TextMode,
-    explainer: "Encode plain text directly into a QR code for literal display.",
+      "Links to a website. Optional UTM parameters can be added for tracking.",
   },
   {
     id: "wifi",
     label: "WiFi",
     icon: "wifi",
     component: WifiMode,
-    explainer: "Generate a configuration code for a wireless network.",
+    explainer:
+      "Allows the user to join a WiFi network without entering the password.",
   },
   {
     id: "vcard",
     label: "Contact",
     icon: "contact",
     component: ContactMode,
-    explainer: "Generate a vCard (3.0) file for saving contact information.",
+    explainer: "Generate a vCard file for sharing contact information.",
   },
   {
     id: "calendar",
@@ -70,17 +65,26 @@ const MODES = [
   },
   {
     id: "sms_email",
-    label: "SMS / Email",
+    label: "Messaging",
     icon: "email",
     component: SmsEmailMode,
-    explainer: "Opens messaging apps with recipient and body text pre-filled.",
+    explainer:
+      "Opens messaging apps (SMS, Email, WhatsApp) with recipient and body text pre-filled.",
   },
   {
     id: "phone",
     label: "Phone",
     icon: "phone",
     component: PhoneMode,
-    explainer: "Generates a link to instantly call the encoded phone number.",
+    explainer: "Prompts the user to call the given number.",
+  },
+  {
+    id: "text",
+    label: "Text",
+    icon: "text",
+    component: TextMode,
+    explainer:
+      "Encode plain text directly into a QR code, for creating custom formats or sharing data.",
   },
 ];
 
@@ -96,6 +100,7 @@ export default function Interface() {
   const [bgColor, setBgColor] = useState("#ffffff");
   const [showDownloadModal, setShowDownloadModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [showModeDropdown, setShowModeDropdown] = useState(false);
 
   useEffect(() => {
     window.location.hash = modeId;
@@ -108,8 +113,11 @@ export default function Interface() {
         setModeId(hash);
       }
     };
+
     window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
   }, []);
 
   const errorCorrectionLevel = EC_LEVELS[ecIndex];
@@ -118,43 +126,68 @@ export default function Interface() {
 
   return (
     <div class="container py-4">
-      {/* Mode Selector */}
-      <div class="row mb-4">
-        <div class="col-12">
-          <div class="mode-scroll-container">
-            <div class="mx-auto btn-group shadow-sm mode-toggle" role="group">
-              {MODES.map((m) => (
-                <button
-                  key={m.id}
-                  type="button"
-                  class={`btn btn-outline-primary d-inline-flex align-items-center justify-content-center px-3 px-md-4 py-2 ${modeId === m.id ? "active" : ""}`}
-                  onClick={() => setModeId(m.id)}
-                >
-                  <Icon name={m.icon} className="fs-5 me-sm-2" />
-                  <span class="d-none d-sm-inline">{m.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="row g-4 justify-content-center">
         <div class="col-12 col-lg-6">
           <div class="card shadow-sm border-0 bg-card">
             <div class="card-body p-4">
               <div class="mb-4">
-                {MODES.map((m) => (
-                  <div
-                    key={m.id}
-                    className={modeId === m.id ? "d-block" : "d-none"}
-                  >
-                    <h1 class="h4 mb-2 fw-bold text-capitalize">
-                      {m.label} QR Code Generator
-                    </h1>
-                    <p class="text-muted small mb-0">{m.explainer}</p>
-                  </div>
-                ))}
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <h1 class="h4 mb-0 fw-bold d-inline-flex align-items-center gap-2">
+                    Create
+                    <div class="mode-dropdown-header">
+                      <button
+                        type="button"
+                        class="mode-dropdown-toggle fw-bold"
+                        onClick={() => setShowModeDropdown(!showModeDropdown)}
+                        aria-expanded={showModeDropdown}
+                        aria-haspopup="true"
+                        id="modeDropdownButton"
+                      >
+                        <Icon name={activeMode.icon} />
+                        {activeMode.label}
+                        <Icon
+                          name="chevron-down"
+                          className={`ms-1 small transition-all ${showModeDropdown ? "rotate-180" : ""}`}
+                          style={{ width: "12px", height: "12px" }}
+                        />
+                      </button>
+
+                      <Modal
+                        isOpen={showModeDropdown}
+                        onClose={() => setShowModeDropdown(false)}
+                        title="Choose your QR Type"
+                        subtitle="Select the format for your QR code"
+                        size="lg"
+                      >
+                        <div class="qr-mode-list">
+                          {MODES.map((m) => (
+                            <button
+                              key={m.id}
+                              type="button"
+                              class={`qr-mode-item ${modeId === m.id ? "active" : ""}`}
+                              onClick={() => {
+                                setModeId(m.id);
+                                setShowModeDropdown(false);
+                              }}
+                            >
+                              <div class="qr-mode-item__icon">
+                                <Icon name={m.icon} />
+                              </div>
+                              <div class="qr-mode-item__content">
+                                <div class="qr-mode-item__title">{m.label}</div>
+                                <div class="qr-mode-item__description">
+                                  {m.explainer}
+                                </div>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </Modal>
+                    </div>
+                    QR Code
+                  </h1>
+                </div>
+                <p class="text-muted small mt-2 mb-0">{activeMode.explainer}</p>
               </div>
 
               <div class="mb-4">
