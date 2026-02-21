@@ -88,7 +88,10 @@ const MODES = [
   },
 ];
 
-export default function Interface() {
+export default function Interface({
+  showModeSwitcher: showModeDropdown = false,
+  setShowModeSwitcher = (_val: boolean) => {},
+}) {
   const [modeId, setModeId] = useState(() => {
     const hash = window.location.hash.replace("#", "");
     return MODES.some((m) => m.id === hash) ? hash : "url";
@@ -100,7 +103,6 @@ export default function Interface() {
   const [bgColor, setBgColor] = useState("#ffffff");
   const [showDownloadModal, setShowDownloadModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
-  const [showModeDropdown, setShowModeDropdown] = useState(false);
 
   useEffect(() => {
     window.location.hash = modeId;
@@ -138,7 +140,7 @@ export default function Interface() {
                       <button
                         type="button"
                         class="mode-dropdown-toggle fw-bold"
-                        onClick={() => setShowModeDropdown(!showModeDropdown)}
+                        onClick={() => setShowModeSwitcher(!showModeDropdown)}
                         aria-expanded={showModeDropdown}
                         aria-haspopup="true"
                         id="modeDropdownButton"
@@ -154,7 +156,7 @@ export default function Interface() {
 
                       <Modal
                         isOpen={showModeDropdown}
-                        onClose={() => setShowModeDropdown(false)}
+                        onClose={() => setShowModeSwitcher(false)}
                         title="Choose your QR Type"
                         subtitle="Select the format for your QR code"
                         size="lg"
@@ -167,7 +169,7 @@ export default function Interface() {
                               class={`qr-mode-item ${modeId === m.id ? "active" : ""}`}
                               onClick={() => {
                                 setModeId(m.id);
-                                setShowModeDropdown(false);
+                                setShowModeSwitcher(false);
                               }}
                             >
                               <div class="qr-mode-item__icon">
