@@ -1,5 +1,6 @@
 import "./Footer.css";
 import Interstitial from "../Interstitial/Interstitial";
+import PWAInstallButton from "./PWAInstallButton";
 
 export default function Footer({ onShowHelp, showHelp, onHideHelp }) {
   const currentYear = new Date().getFullYear();
@@ -68,6 +69,7 @@ export default function Footer({ onShowHelp, showHelp, onHideHelp }) {
           >
             GitHub
           </a>
+          <PWAInstallButton />
           <span class="text-muted mx-1">&bull;</span>
           <button
             type="button"
