@@ -8,8 +8,9 @@ export default function Footer({ onShowHelp, showHelp, onHideHelp }) {
     <footer class="qr-footer mt-auto py-5 uppercase-headings">
       <div class="container text-center text-muted x-small">
         <div class="mb-3 mx-auto" style="max-width: 600px;">
-          QR Coder makes QR codes for URLs with UTMs, WiFi credentials, and
-          vCard contact info. Secure, fast, and private.
+          <span class="branding">QR Coder</span> makes QR codes for URLs with
+          UTMs, WiFi credentials, and vCard contact info. Secure, fast, and
+          private.
         </div>
         <div class="d-flex justify-content-center flex-wrap gap-2">
           <span>&copy; {currentYear}</span>

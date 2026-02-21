@@ -47,40 +47,41 @@ export default function Modal({
     };
   }, [isOpen, onClose]);
 
+  const handleBackdropClick = (e: MouseEvent) => {
+    if (e.target === modalEl.current) {
+      onClose();
+    }
+  };
+
   return (
-    <div
-      class={`qr-modal-backdrop ${isOpen ? "is-open" : "is-closed"}`}
-      onClick={onClose}
+    <dialog
+      class={`qr-modal qr-modal--${size}`}
+      ref={modalEl}
+      onClick={handleBackdropClick}
+      aria-labelledby={title ? "modalTitle" : undefined}
     >
-      <dialog
-        class={`qr-modal qr-modal--${size}`}
-        ref={modalEl}
-        onClick={(e) => e.stopPropagation()}
-        aria-labelledby={title ? "modalTitle" : undefined}
-      >
-        {(title || subtitle) && (
-          <div class="qr-modal__header">
-            <div class="qr-modal__header-content">
-              {title && (
-                <h2 id="modalTitle" class="h4 mb-0 fw-bold">
-                  {title}
-                </h2>
-              )}
-              {subtitle && <p class="qr-modal__subtitle mb-0">{subtitle}</p>}
-            </div>
-            <button
-              type="button"
-              class="btn-close"
-              onClick={onClose}
-              aria-label="Close modal"
-            ></button>
+      {(title || subtitle) && (
+        <div class="qr-modal__header">
+          <div class="qr-modal__header-content">
+            {title && (
+              <h2 id="modalTitle" class="h4 mb-0 fw-bold">
+                {title}
+              </h2>
+            )}
+            {subtitle && <p class="qr-modal__subtitle mb-0">{subtitle}</p>}
           </div>
-        )}
+          <button
+            type="button"
+            class="btn-close"
+            onClick={onClose}
+            aria-label="Close modal"
+          ></button>
+        </div>
+      )}
 
-        <div class="qr-modal__content">{children}</div>
+      <div class="qr-modal__content">{children}</div>
 
-        {footer && <div class="qr-modal__footer">{footer}</div>}
-      </dialog>
-    </div>
+      {footer && <div class="qr-modal__footer">{footer}</div>}
+    </dialog>
   );
 }

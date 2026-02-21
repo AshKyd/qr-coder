@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Doto";
+  src: url("/Doto-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Modern font stack */
   font-family:
@@ -21,6 +29,24 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   accent-color: var(--qr-primary);
+
+  --qr-heading-font: "Doto", sans-serif;
+  --qr-branding-font: "Doto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.branding {
+  font-family: var(--qr-heading-font);
+  font-weight: 700;
+}
+
+.branding {
+  font-family: var(--qr-branding-font);
 }
 
 @media (prefers-color-scheme: dark) {

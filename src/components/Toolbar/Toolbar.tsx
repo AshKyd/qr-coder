@@ -4,7 +4,7 @@ import "./Toolbar.css";
 export default function Toolbar({ onOpenMenu }) {
   return (
     <header class="qr-toolbar">
-      <h1 class="qr-toolbar__title">
+      <h1 class="qr-toolbar__title branding">
         <span class="qr-toolbar__title-a">qr</span>{" "}
         <span class="qr-toolbar__title-b">coder</span>
       </h1>

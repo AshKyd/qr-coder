@@ -39,7 +39,6 @@
 
 .qr-toolbar__title {
   font-size: 1.25rem;
-  font-weight: 500;
   display: flex;
   align-items: center;
   margin: 0;
@@ -48,11 +47,9 @@
 }
 
 .qr-toolbar__title-a {
-  font-weight: 800;
   color: var(--qr-primary);
 }
 
 .qr-toolbar__title-b {
-  font-weight: 300;
   opacity: 0.7;
 }

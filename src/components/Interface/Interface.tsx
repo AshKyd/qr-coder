@@ -153,41 +153,41 @@ export default function Interface({
                           }}
                         />
                       </button>
-
-                      <Modal
-                        isOpen={showModeDropdown}
-                        onClose={() => setShowModeSwitcher(false)}
-                        title="Choose your QR Type"
-                        subtitle="Select the format for your QR code"
-                        size="lg"
-                      >
-                        <div class="qr-mode-list">
-                          {MODES.map((m) => (
-                            <button
-                              key={m.id}
-                              type="button"
-                              class={`qr-mode-item ${modeId === m.id ? "active" : ""}`}
-                              onClick={() => {
-                                setModeId(m.id);
-                                setShowModeSwitcher(false);
-                              }}
-                            >
-                              <div class="qr-mode-item__icon">
-                                <Icon name={m.icon} />
-                              </div>
-                              <div class="qr-mode-item__content">
-                                <div class="qr-mode-item__title">{m.label}</div>
-                                <div class="qr-mode-item__description">
-                                  {m.explainer}
-                                </div>
-                              </div>
-                            </button>
-                          ))}
-                        </div>
-                      </Modal>
                     </div>
                     QR Code creator
                   </h1>
+
+                  <Modal
+                    isOpen={showModeDropdown}
+                    onClose={() => setShowModeSwitcher(false)}
+                    title="Choose your QR Type"
+                    subtitle="Select the format for your QR code"
+                    size="lg"
+                  >
+                    <div class="qr-mode-list">
+                      {MODES.map((m) => (
+                        <button
+                          key={m.id}
+                          type="button"
+                          class={`qr-mode-item ${modeId === m.id ? "active" : ""}`}
+                          onClick={() => {
+                            setModeId(m.id);
+                            setShowModeSwitcher(false);
+                          }}
+                        >
+                          <div class="qr-mode-item__icon">
+                            <Icon name={m.icon} />
+                          </div>
+                          <div class="qr-mode-item__content">
+                            <div class="qr-mode-item__title">{m.label}</div>
+                            <div class="qr-mode-item__description">
+                              {m.explainer}
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </Modal>
                 </div>
                 <p class="text-muted small mt-2 mb-0">{activeMode.explainer}</p>
               </div>
