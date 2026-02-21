@@ -132,8 +132,11 @@ export default function DownloadModal({
         </div>
 
         <div class="col-12">
-          <label class="form-label fw-bold">Size (Pixels)</label>
+          <label for="download-size" class="form-label fw-bold">
+            Size (Pixels)
+          </label>
           <select
+            id="download-size"
             class="form-select form-select-lg"
             value={size}
             onChange={(e) => setSize(Number(e.currentTarget.value))}

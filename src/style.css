@@ -19,7 +19,7 @@
   /* Refined color palette */
   --bs-primary-rgb: 84, 10, 184;
   --qr-primary: #540ab8; /* Darker purple for light mode */
-  --qr-bg: #f8f9fa;
+  --qr-bg: #ffffff;
   --qr-text: #212529;
   --qr-card-bg: #ffffff;
   --qr-border: #dee2e6;

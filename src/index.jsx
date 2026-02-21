@@ -20,13 +20,15 @@ export function App() {
     <LocationProvider>
       <div class="qr-app">
         <Toolbar onOpenMenu={() => setShowModeSwitcher(true)} />
-        <Router>
-          <Interface
-            path="/:mode?"
-            showModeSwitcher={showModeSwitcher}
-            setShowModeSwitcher={setShowModeSwitcher}
-          />
-        </Router>
+        <main>
+          <Router>
+            <Interface
+              path="/:mode?"
+              showModeSwitcher={showModeSwitcher}
+              setShowModeSwitcher={setShowModeSwitcher}
+            />
+          </Router>
+        </main>
         <Footer
           onShowHelp={() => setShowHelp(true)}
           showHelp={showHelp}

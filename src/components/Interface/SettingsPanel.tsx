@@ -35,13 +35,17 @@ export default function SettingsPanel({
       <div class="qr-settings-panel__content pt-3 pb-4 px-1">
         <div class="row g-3">
           <div class="col-12">
-            <label class="form-label fw-bold small text-uppercase text-muted d-flex justify-content-between mb-2">
+            <label
+              for="ec-range"
+              class="form-label fw-bold small text-uppercase text-muted d-flex justify-content-between mb-2"
+            >
               Error Correction
               <span class="badge bg-primary rounded-pill">
                 {EC_LABELS[ecIndex]}
               </span>
             </label>
             <input
+              id="ec-range"
               type="range"
               class="form-range"
               min="0"
@@ -53,10 +57,14 @@ export default function SettingsPanel({
           </div>
 
           <div class="col-12 mb-2">
-            <label class="form-label fw-bold small text-uppercase text-muted mb-2">
+            <label
+              for="margin-select"
+              class="form-label fw-bold small text-uppercase text-muted mb-2"
+            >
               Quiet Zone (Margin)
             </label>
             <select
+              id="margin-select"
               class="form-select form-select-sm"
               value={margin}
               onChange={(e) => setMargin(Number(e.currentTarget.value))}
@@ -69,11 +77,15 @@ export default function SettingsPanel({
           </div>
 
           <div class="col-6">
-            <label class="form-label fw-bold small text-uppercase text-muted mb-2">
+            <label
+              for="fg-color"
+              class="form-label fw-bold small text-uppercase text-muted mb-2"
+            >
               Foreground
             </label>
             <div class="d-flex align-items-center gap-2">
               <input
+                id="fg-color"
                 type="color"
                 class="form-control form-control-color"
                 value={fgColor}
@@ -84,11 +96,15 @@ export default function SettingsPanel({
           </div>
 
           <div class="col-6">
-            <label class="form-label fw-bold small text-uppercase text-muted mb-2">
+            <label
+              for="bg-color"
+              class="form-label fw-bold small text-uppercase text-muted mb-2"
+            >
               Background
             </label>
             <div class="d-flex align-items-center gap-2">
               <input
+                id="bg-color"
                 type="color"
                 class="form-control form-control-color"
                 value={bgColor}

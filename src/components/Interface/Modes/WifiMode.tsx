@@ -45,8 +45,11 @@ export default function WifiMode({ onChange }: WifiModeProps) {
         />
       </div>
       <div class="col-md-6">
-        <label class="form-label fw-semibold">Encryption</label>
+        <label for="wifi-encryption" class="form-label fw-semibold">
+          Encryption
+        </label>
         <select
+          id="wifi-encryption"
           class="form-select"
           value={wifi.encryption}
           onChange={(e) =>
