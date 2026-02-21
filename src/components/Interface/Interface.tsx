@@ -8,6 +8,7 @@ import UrlMode from "./Modes/UrlMode";
 import WifiMode from "./Modes/WifiMode";
 import ContactMode from "./Modes/ContactMode";
 import DownloadModal from "../DownloadModal/DownloadModal";
+import SettingsPanel from "./SettingsPanel";
 import Icon from "../Icon/Icon";
 
 const EC_LEVELS = ["L", "M", "Q", "H"];
@@ -60,7 +61,11 @@ export default function Interface() {
   });
   const [ecIndex, setEcIndex] = useState(0); // Default to "L" (Lowest)
   const [qrValue, setQrValue] = useState("");
+  const [margin, setMargin] = useState(1);
+  const [fgColor, setFgColor] = useState("#000000");
+  const [bgColor, setBgColor] = useState("#ffffff");
   const [showDownloadModal, setShowDownloadModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
 
   useEffect(() => {
     window.location.hash = modeId;
@@ -130,14 +135,40 @@ export default function Interface() {
         <div class="col-12 col-lg-4">
           <div class="card shadow-sm border-0 bg-card h-100">
             <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center min-h-preview">
-              <h2 class="h5 mb-4 fw-bold text-muted w-100 text-center">
-                Preview
-              </h2>
-              <div class="qr-preview-wrapper d-flex align-items-center justify-content-center flex-grow-1 mb-4">
+              <div class="w-100 d-flex justify-content-between align-items-center mb-0">
+                <h2 class="h5 mb-0 fw-bold text-muted text-center flex-grow-1">
+                  Preview
+                </h2>
+                <button
+                  type="button"
+                  class={`btn btn-sm ${showSettingsModal ? "btn-primary" : "btn-outline-secondary"} btn-square d-flex align-items-center justify-content-center ms-n5 transition-all`}
+                  onClick={() => setShowSettingsModal(!showSettingsModal)}
+                  title="Settings"
+                >
+                  <Icon name="settings" />
+                </button>
+              </div>
+
+              <SettingsPanel
+                isOpen={showSettingsModal}
+                ecIndex={ecIndex}
+                setEcIndex={setEcIndex}
+                margin={margin}
+                setMargin={setMargin}
+                fgColor={fgColor}
+                setFgColor={setFgColor}
+                bgColor={bgColor}
+                setBgColor={setBgColor}
+              />
+
+              <div class="qr-preview-wrapper d-flex align-items-center justify-content-center flex-grow-1 my-4">
                 {qrValue ? (
                   <QRCode
                     data={qrValue}
                     errorCorrectionLevel={errorCorrectionLevel}
+                    margin={margin}
+                    fgColor={fgColor}
+                    bgColor={bgColor}
                   />
                 ) : (
                   <div class="text-center text-muted opacity-50">
@@ -148,33 +179,10 @@ export default function Interface() {
               </div>
 
               {qrValue && (
-                <div class="w-100">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <label for="qr-ec" class="form-label fw-semibold mb-0">
-                      Error Correction
-                    </label>
-                    <span class="badge bg-primary rounded-pill">
-                      {EC_LABELS[ecIndex]}
-                    </span>
-                  </div>
-                  <input
-                    id="qr-ec"
-                    type="range"
-                    class="form-range"
-                    min="0"
-                    max="3"
-                    step="1"
-                    value={ecIndex}
-                    onInput={(e) => setEcIndex(Number(e.currentTarget.value))}
-                  />
-                  <div class="d-flex justify-content-between x-small text-muted px-1">
-                    <span>Lite</span>
-                    <span>Robust</span>
-                  </div>
-
+                <div class="w-100 mt-2">
                   <button
                     type="button"
-                    class="btn btn-primary w-100 mt-4 py-2 fw-bold"
+                    class="btn btn-primary w-100 py-2 fw-bold"
                     onClick={() => setShowDownloadModal(true)}
                   >
                     <Icon name="save" className="me-2" />
@@ -191,6 +199,9 @@ export default function Interface() {
         <DownloadModal
           data={qrValue}
           errorCorrectionLevel={errorCorrectionLevel}
+          margin={margin}
+          fgColor={fgColor}
+          bgColor={bgColor}
           onClose={() => setShowDownloadModal(false)}
         />
       )}

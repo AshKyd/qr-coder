@@ -1,6 +1,13 @@
 import { useEffect, useState } from "preact/hooks";
+import "./QRCode.css";
 
-export default function QRCode({ data, errorCorrectionLevel }) {
+export default function QRCode({
+  data,
+  errorCorrectionLevel,
+  margin,
+  fgColor = "#000000",
+  bgColor = "#ffffff",
+}) {
   const [dataUrl, setDataUrl] = useState("");
 
   useEffect(() => {
@@ -9,16 +16,15 @@ export default function QRCode({ data, errorCorrectionLevel }) {
       return;
     }
 
-    // Import dynamically for code splitting if needed, though 'qrcode' is small
     import("qrcode")
       .then((module) =>
         module.default.toDataURL(data, {
           errorCorrectionLevel,
-          margin: 1,
+          margin, // Revert to library-native margin
           width: 300,
           color: {
-            dark: "#000000",
-            light: "#ffffff",
+            dark: fgColor,
+            light: bgColor, // Revert to library-native background
           },
         }),
       )
@@ -26,18 +32,24 @@ export default function QRCode({ data, errorCorrectionLevel }) {
       .catch((err) => {
         console.error("QR Code generation failed:", err);
       });
-  }, [data, errorCorrectionLevel]);
+  }, [data, errorCorrectionLevel, margin, fgColor, bgColor]);
 
   if (!dataUrl) return null;
 
-  // Using key={dataUrl} ensures the <img> element is replaced (and animation re-triggered)
-  // whenever the dataUrl changes.
   return (
-    <img
-      key={dataUrl}
-      src={dataUrl}
-      alt="The corresponding QR code"
-      class="animate-pulse"
-    />
+    <div
+      class="qr-preview-wrapper-inner"
+      style={{
+        backgroundColor: bgColor,
+        borderRadius: "0.5rem",
+      }}
+    >
+      <img
+        key={`${dataUrl}-${margin}-${bgColor}`}
+        src={dataUrl}
+        alt="The corresponding QR code"
+        class="qr-code-image animate-pulse"
+      />
+    </div>
   );
 }

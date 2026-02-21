@@ -3,6 +3,7 @@ import textIcon from "bootstrap-icons/icons/file-earmark-text.svg?raw";
 import wifiIcon from "bootstrap-icons/icons/wifi.svg?raw";
 import contactIcon from "bootstrap-icons/icons/person-badge.svg?raw";
 import saveIcon from "bootstrap-icons/icons/save.svg?raw";
+import gearIcon from "bootstrap-icons/icons/gear.svg?raw";
 
 const ICON_REGISTRY = {
   globe: globeIcon,
@@ -10,6 +11,7 @@ const ICON_REGISTRY = {
   wifi: wifiIcon,
   contact: contactIcon,
   save: saveIcon,
+  settings: gearIcon,
 };
 
 export default function Icon({ name, className = "" }) {

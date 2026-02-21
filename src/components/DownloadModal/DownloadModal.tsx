@@ -5,17 +5,22 @@ import "./DownloadModal.css";
 interface DownloadModalProps {
   data: string;
   errorCorrectionLevel: string;
+  margin: number;
+  fgColor: string;
+  bgColor: string;
   onClose: () => void;
 }
 
 export default function DownloadModal({
   data,
   errorCorrectionLevel,
+  margin,
+  fgColor,
+  bgColor,
   onClose,
 }: DownloadModalProps) {
   const [format, setFormat] = useState("image/png");
   const [size, setSize] = useState(1024);
-  const [margin, setMargin] = useState(4);
   const modalEl = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -45,6 +50,10 @@ export default function DownloadModal({
           errorCorrectionLevel: errorCorrectionLevel as any,
           margin,
           width: size,
+          color: {
+            dark: fgColor,
+            light: bgColor,
+          },
         });
         const blob = new Blob([svgString], { type: "image/svg+xml" });
         downloadUrl = URL.createObjectURL(blob);
@@ -54,6 +63,10 @@ export default function DownloadModal({
           errorCorrectionLevel: errorCorrectionLevel as any,
           margin,
           width: size,
+          color: {
+            dark: fgColor,
+            light: bgColor,
+          },
         });
       }
 
@@ -141,20 +154,6 @@ export default function DownloadModal({
                 <option value={1024}>1024 x 1024</option>
                 <option value={2048}>2048 x 2048</option>
                 <option value={4096}>4096 x 4096</option>
-              </select>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label fw-semibold">Quiet Zone (Margin)</label>
-              <select
-                class="form-select"
-                value={margin}
-                onChange={(e) => setMargin(Number(e.currentTarget.value))}
-              >
-                <option value={0}>No Margin</option>
-                <option value={1}>Small (1)</option>
-                <option value={4}>Standard (4)</option>
-                <option value={8}>Large (8)</option>
               </select>
             </div>
           </div>

@@ -7,8 +7,8 @@ export default function Footer() {
     <footer class="qr-footer mt-auto py-5 uppercase-headings">
       <div class="container text-center text-muted x-small">
         <div class="mb-3 mx-auto" style="max-width: 600px;">
-          QR Coder is a high-performance QR code generator for URLs with UTMs,
-          WiFi credentials, and vCard contact info. Secure, fast, and private.
+          QR Coder makes QR codes for URLs with UTMs, WiFi credentials, and
+          vCard contact info. Secure, fast, and private.
         </div>
         <div>
           &copy; {currentYear}{" "}
