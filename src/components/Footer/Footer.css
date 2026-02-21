@@ -14,12 +14,24 @@
 }
 
 .qr-footer .hover-link {
-  color: var(--qr-primary);
+  color: inherit;
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .qr-footer .hover-link:hover {
-  color: color-mix(in srgb, var(--qr-primary), black 15%);
+  color: var(--qr-primary);
+}
+
+/* Inline content-type links — blend in, hint on hover */
+.qr-footer .type-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.qr-footer .type-link:hover {
+  color: var(--qr-primary);
 }
 
 .qr-footer .btn-outline-secondary {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
+import { useRoute, useLocation } from "preact-iso";
 import QRCode from "../QRCode/QRCode";
 import "./Interface.css";
 
@@ -91,11 +92,16 @@ const MODES = [
 export default function Interface({
   showModeSwitcher: showModeDropdown = false,
   setShowModeSwitcher = (_val: boolean) => {},
+  path: _path,
+}: {
+  showModeSwitcher?: boolean;
+  setShowModeSwitcher?: (val: any) => void;
+  path?: string;
 }) {
-  const [modeId, setModeId] = useState(() => {
-    const hash = window.location.hash.replace("#", "");
-    return MODES.some((m) => m.id === hash) ? hash : "url";
-  });
+  const { params } = useRoute();
+  const { route } = useLocation();
+
+  const modeId = params.mode || "url";
   const [ecIndex, setEcIndex] = useState(0); // Default to "L" (Lowest)
   const [qrValue, setQrValue] = useState("");
   const [margin, setMargin] = useState(1);
@@ -103,24 +109,6 @@ export default function Interface({
   const [bgColor, setBgColor] = useState("#ffffff");
   const [showDownloadModal, setShowDownloadModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
-
-  useEffect(() => {
-    window.location.hash = modeId;
-  }, [modeId]);
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (MODES.some((m) => m.id === hash)) {
-        setModeId(hash);
-      }
-    };
-
-    window.addEventListener("hashchange", handleHashChange);
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, []);
 
   const errorCorrectionLevel = EC_LEVELS[ecIndex];
   const activeMode = MODES.find((m) => m.id === modeId) || MODES[0];
@@ -171,7 +159,7 @@ export default function Interface({
                           type="button"
                           class={`qr-mode-item ${modeId === m.id ? "active" : ""}`}
                           onClick={() => {
-                            setModeId(m.id);
+                            route("/" + m.id);
                             setShowModeSwitcher(false);
                           }}
                         >

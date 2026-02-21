@@ -10,8 +10,33 @@ export default function Footer({ onShowHelp, showHelp, onHideHelp }) {
         <div class="mb-3 mx-auto" style="max-width: 600px;">
           <span class="branding">QR Coder</span> generates QR codes for{" "}
           <strong>
-            URLs, WiFi, vCards, Calendar events, Locations, Messaging, and Phone
-            numbers
+            <a href="/url" class="type-link">
+              URLs
+            </a>
+            ,{" "}
+            <a href="/wifi" class="type-link">
+              WiFi
+            </a>
+            ,{" "}
+            <a href="/vcard" class="type-link">
+              vCards
+            </a>
+            ,{" "}
+            <a href="/calendar" class="type-link">
+              Calendar events
+            </a>
+            ,{" "}
+            <a href="/geo" class="type-link">
+              Locations
+            </a>
+            ,{" "}
+            <a href="/sms_email" class="type-link">
+              Messaging
+            </a>
+            , and{" "}
+            <a href="/phone" class="type-link">
+              Phone numbers
+            </a>
           </strong>{" "}
           locally in your browser so your data stays private.
         </div>
