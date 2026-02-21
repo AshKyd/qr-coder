@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="16" height="16" shape-rendering="crispEdges" version="1.1" viewBox="0 0 .45312 .45312" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="16" height="16" shape-rendering="crispEdges" version="1.1" viewBox="0 0 .45312 .45312" xmlns="http://www.w3.org/2000/svg">
  <defs>
   <linearGradient id="linearGradient3" x2=".45312" y1=".0042747" y2=".45351" gradientUnits="userSpaceOnUse">
    <stop stop-color="#f0f" offset="0"/>
    <stop stop-color="#0900bf" offset="1"/>
   </linearGradient>
  </defs>
- <rect x=".019785" y=".020884" width=".40889" height=".40669" rx=".045842" ry=".045842" fill="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width=".1416"/>
+ <rect x=".019785" y=".020884" width=".40889" height=".40669" rx=".045842" ry=".045842" fill="#4e277c" opacity=".19823" stroke-linecap="round" stroke-linejoin="round" stroke-width=".1416"/>
  <path d="m0 0.032366h0.45312m-0.45312 0.064732h0.064732m0.32366 0h0.064732m-0.45312 0.064732h0.064732m0.064732 0h0.1942m0.064732 0h0.064733m-0.45312 0.064732h0.064732m0.064732 0h0.1942m0.064732 0h0.064733m-0.45312 0.064732h0.064732m0.064732 0h0.1942m0.064732 0h0.064733m-0.45312 0.064732h0.064732m0.32366 0h0.064732m-0.45312 0.064732h0.45312" fill="#f0f" stroke="url(#linearGradient3)" stroke-width=".064732"/>
 </svg>

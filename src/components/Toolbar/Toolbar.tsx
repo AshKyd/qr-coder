@@ -11,7 +11,7 @@ export default function Toolbar({ onOpenMenu }) {
       <div class="qr-toolbar__flex"></div>
       <button
         type="button"
-        class="qr-toolbar__button"
+        class="qr-toolbar__button btn btn-sm btn-outline-secondary btn-square d-flex align-items-center justify-content-center transition-all"
         onClick={(e) => {
           e.preventDefault();
           onOpenMenu();

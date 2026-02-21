@@ -13,28 +13,7 @@
 }
 
 .qr-toolbar__button {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 1px solid var(--qr-border);
-  background: var(--qr-bg);
-  color: var(--qr-text);
-  transition: all 0.2s ease;
-  font-size: 1.2rem;
-  line-height: 1;
-  padding: 0;
-}
-
-.qr-toolbar__button:hover,
-.qr-toolbar__button:focus {
-  cursor: pointer;
-  background: var(--qr-primary);
-  color: white;
-  border-color: var(--qr-primary);
-  outline: none;
+  margin-left: 0.5rem;
 }
 
 .qr-toolbar__title {
