@@ -41,7 +41,7 @@ const MODES = [
     icon: "wifi",
     component: WifiMode,
     explainer:
-      "Allows the user to join a WiFi network without entering the password.",
+      "Allows the user to join a WiFi network without having to enter the password manually. Note: your password can still be extracted from the qr code.",
   },
   {
     id: "vcard",
