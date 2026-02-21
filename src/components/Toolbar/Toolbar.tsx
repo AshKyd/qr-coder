@@ -20,7 +20,7 @@ export default function Toolbar({}) {
       >
         ⓘ
       </button>
-      {modalOpen && <Interstitial onClose={() => setModalOpen(false)} />}
+      <Interstitial isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </header>
   );
 }

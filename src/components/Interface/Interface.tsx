@@ -1,5 +1,4 @@
 import { useState, useEffect } from "preact/hooks";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import QRCode from "../QRCode/QRCode";
 import "./Interface.css";
 
@@ -9,6 +8,7 @@ import UrlMode from "./Modes/UrlMode";
 import WifiMode from "./Modes/WifiMode";
 import ContactMode from "./Modes/ContactMode";
 import DownloadModal from "../DownloadModal/DownloadModal";
+import Icon from "../Icon/Icon";
 
 const EC_LEVELS = ["L", "M", "Q", "H"];
 const EC_LABELS = [
@@ -22,7 +22,7 @@ const MODES = [
   {
     id: "url",
     label: "URL",
-    icon: "bi-globe",
+    icon: "globe",
     component: UrlMode,
     explainer:
       "Create a QR code for a website link. Optional UTM parameters can be added for tracking clicks from physical placements like flyers or business cards.",
@@ -30,7 +30,7 @@ const MODES = [
   {
     id: "text",
     label: "Text",
-    icon: "bi-file-earmark-text",
+    icon: "text",
     component: TextMode,
     explainer:
       "Encode plain text directly into a QR code. When scanned, the device will display the literal text content on the screen.",
@@ -38,7 +38,7 @@ const MODES = [
   {
     id: "wifi",
     label: "WiFi",
-    icon: "bi-wifi",
+    icon: "wifi",
     component: WifiMode,
     explainer:
       "Generate a configuration code for a wireless network. Scanning this allows devices to join the network without manually entering the SSID or password.",
@@ -46,7 +46,7 @@ const MODES = [
   {
     id: "vcard",
     label: "Contact",
-    icon: "bi-person-badge",
+    icon: "contact",
     component: ContactMode,
     explainer:
       "Generate a vCard (3.0) file. Scanners will recognize this as contact information and prompt the user to save it to their address book.",
@@ -91,10 +91,10 @@ export default function Interface() {
               <button
                 key={m.id}
                 type="button"
-                class={`btn btn-outline-primary px-3 px-md-4 py-2 ${modeId === m.id ? "active" : ""}`}
+                class={`btn btn-outline-primary d-inline-flex align-items-center justify-content-center px-3 px-md-4 py-2 ${modeId === m.id ? "active" : ""}`}
                 onClick={() => setModeId(m.id)}
               >
-                <i class={`bi ${m.icon} fs-5 me-sm-2`}></i>
+                <Icon name={m.icon} className="fs-5 me-sm-2" />
                 <span class="d-none d-sm-inline">{m.label}</span>
               </button>
             ))}
@@ -177,7 +177,7 @@ export default function Interface() {
                     class="btn btn-primary w-100 mt-4 py-2 fw-bold"
                     onClick={() => setShowDownloadModal(true)}
                   >
-                    <i class="bi bi-save me-2"></i>
+                    <Icon name="save" className="me-2" />
                     Save QR Code
                   </button>
                 </div>

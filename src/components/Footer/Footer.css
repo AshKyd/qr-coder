@@ -1,0 +1,34 @@
+.qr-footer {
+  color: var(--qr-text);
+  transition: all 0.3s ease;
+}
+
+.qr-footer h3,
+.qr-footer h4 {
+  color: var(--qr-text);
+  letter-spacing: -0.01em;
+}
+
+.qr-footer .text-muted {
+  color: color-mix(in srgb, var(--qr-text), transparent 30%) !important;
+}
+
+.qr-footer .hover-link {
+  color: var(--qr-primary);
+  transition: color 0.2s ease;
+}
+
+.qr-footer .hover-link:hover {
+  color: color-mix(in srgb, var(--qr-primary), black 15%);
+}
+
+.qr-footer .btn-outline-secondary {
+  border-color: var(--qr-border);
+  color: var(--qr-text);
+}
+
+.qr-footer .btn-outline-secondary:hover {
+  background-color: var(--qr-bg);
+  border-color: var(--qr-primary);
+  color: var(--qr-primary);
+}

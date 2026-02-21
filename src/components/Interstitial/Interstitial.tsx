@@ -1,59 +1,80 @@
 import { useEffect, useRef } from "preact/hooks";
 import "./Interstitial.css";
 
-export default function Interstitial({ onClose }) {
+export default function Interstitial({ isOpen, onClose }) {
   const modalEl = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (!modalEl.current) return;
+    const dialog = modalEl.current;
+    if (!dialog) return;
 
-    // showModal() is necessary for the native <dialog> backdrop and top-layer behavior
-    if (!modalEl.current.open) {
-      modalEl.current.showModal();
+    if (isOpen) {
+      if (!dialog.open) dialog.showModal();
+    } else {
+      if (dialog.open) dialog.close();
     }
 
-    // Handle the browser's native 'cancel' (Escape key)
     const handleCancel = (e: Event) => {
       e.preventDefault();
       onClose();
     };
 
-    const dialog = modalEl.current;
     dialog.addEventListener("cancel", handleCancel);
     return () => dialog.removeEventListener("cancel", handleCancel);
-  }, [onClose]);
+  }, [isOpen, onClose]);
 
   return (
     <div
-      class="qr-interstitial"
-      onClick={onClose} // Clicking the blurred overlay
+      class={`qr-interstitial ${isOpen ? "is-open" : "is-closed"}`}
+      onClick={onClose}
     >
       <dialog
         class="qr-interstitial__modal"
         ref={modalEl}
-        onClick={(e) => e.stopPropagation()} // Prevent clicking inside from closing
+        onClick={(e) => e.stopPropagation()}
       >
         <div class="qr-interstitial__top">
           <h1>
             <span class="qr-toolbar__title-a">qr</span>{" "}
             <span class="qr-toolbar__title-b">coder</span>
           </h1>
-          <p class="qr-interstitial__sub">A simple QR code generator</p>
+          <p class="qr-interstitial__sub">Professional QR Code Generator</p>
         </div>
         <div class="qr-interstitial__content">
           <div class="qr-interstitial__container">
-            <p>
-              The app is built in <a href="https://preactjs.com/">Preact</a> and{" "}
-              <a href="https://github.com/soldair/node-qrcode">node-qrcode</a>.
-              <a href="https://github.com/AshKyd/qr-coder">Source code</a> is on
-              Github.
-            </p>
-            <p>Please feel free to browse around and enjoy.</p>
+            <section class="mb-4">
+              <p class="small text-muted">
+                This app is built with{" "}
+                <a href="https://preactjs.com/">Preact</a> and{" "}
+                <a href="https://github.com/soldair/node-qrcode">node-qrcode</a>
+                . The source code is on{" "}
+                <a href="https://github.com/AshKyd/qr-coder">GitHub</a>.
+              </p>
+            </section>
+
+            <section class="mb-4">
+              <h2 class="h6 fw-bold text-uppercase mb-2">Privacy & Data</h2>
+              <p class="small text-muted mb-0">
+                Data is never sent to a server. All QR codes are generated
+                locally in your browser. Your URLs, WiFi passwords, and contact
+                info stay on your device.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="h6 fw-bold text-uppercase mb-2">About the codes</h2>
+              <p class="small text-muted mb-0">
+                You can generate as many QR codes as you like. They are
+                permanent and will work forever.
+              </p>
+            </section>
           </div>
         </div>
-        <div class="qr-interstitial__bar">
-          <div class="qr-interstitial__container">
-            <button onClick={onClose}>Ok</button>
+        <div class="qr-interstitial__bar border-top pt-3 mt-4">
+          <div class="qr-interstitial__container d-flex justify-content-end">
+            <button class="btn btn-primary px-4" onClick={onClose}>
+              Close
+            </button>
           </div>
         </div>
       </dialog>
