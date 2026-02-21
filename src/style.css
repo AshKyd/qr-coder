@@ -33,6 +33,16 @@
   --qr-heading-font: "Doto", sans-serif;
   --qr-branding-font: "Doto", sans-serif;
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bs-primary-rgb: 139, 93, 231;
+    --qr-primary: #9f6fff; /* Lighter purple for dark mode */
+    --qr-bg: #121212;
+    --qr-text: #e9ecef;
+    --qr-card-bg: #1e1e1e;
+    --qr-border: #373b3e;
+  }
+}
 
 h1,
 h2,
@@ -47,17 +57,6 @@ h6,
 
 .branding {
   font-family: var(--qr-branding-font);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bs-primary-rgb: 139, 93, 231;
-    --qr-primary: #8b5de7; /* Lighter purple for dark mode */
-    --qr-bg: #121212;
-    --qr-text: #e9ecef;
-    --qr-card-bg: #1e1e1e;
-    --qr-border: #373b3e;
-  }
 }
 
 body {
@@ -183,6 +182,7 @@ a:focus-visible {
 
 /* Button Customization */
 .btn-primary {
+  --qr-primary: #540ab8;
   --bs-btn-color: #fff;
   --bs-btn-bg: var(--qr-primary);
   --bs-btn-border-color: var(--qr-primary);
