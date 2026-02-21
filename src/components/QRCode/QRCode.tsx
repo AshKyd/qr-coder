@@ -1,5 +1,4 @@
 import { useEffect, useState } from "preact/hooks";
-import QRLib from "qrcode";
 
 export default function QRCode({ data, errorCorrectionLevel }) {
   const [dataUrl, setDataUrl] = useState("");
