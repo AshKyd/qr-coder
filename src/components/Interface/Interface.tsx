@@ -213,7 +213,7 @@ export default function Interface({
 
         <div class="col-12 col-lg-4">
           <div class="card shadow-sm border-0 bg-card h-100">
-            <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center min-h-preview">
+            <div class="card-body p-4 d-flex flex-column align-items-center justify-content-start min-h-preview">
               <div class="w-100 d-flex justify-content-between align-items-center mb-0">
                 <h2 class="h5 mb-0 fw-bold text-muted text-center flex-grow-1">
                   Preview
@@ -240,7 +240,7 @@ export default function Interface({
                 setBgColor={setBgColor}
               />
 
-              <div class="qr-preview-wrapper d-flex align-items-center justify-content-center flex-grow-1 my-4">
+              <div class="qr-preview-wrapper d-flex align-items-center justify-content-center mb-4">
                 {qrValue ? (
                   <QRCode
                     data={qrValue}

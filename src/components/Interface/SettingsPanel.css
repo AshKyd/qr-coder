@@ -3,15 +3,18 @@
   grid-template-rows: 0fr;
   transition:
     grid-template-rows 0.3s ease-out,
-    opacity 0.2s ease;
+    opacity 0.2s ease,
+    visibility 0.3s;
   overflow: hidden;
   opacity: 0;
+  visibility: hidden;
   width: 100%;
 }
 
 .qr-settings-panel.is-open {
   grid-template-rows: 1fr;
   opacity: 1;
+  visibility: visible;
 }
 
 .qr-settings-panel__content {
