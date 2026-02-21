@@ -1,6 +1,7 @@
 import { useState, useEffect } from "preact/hooks";
 import { useRoute, useLocation } from "preact-iso";
 import QRCode from "../QRCode/QRCode";
+import { routeMeta } from "../../route-meta";
 import "./Interface.css";
 
 // Import Mode Components
@@ -114,6 +115,27 @@ export default function Interface({
   const activeMode = MODES.find((m) => m.id === modeId) || MODES[0];
   const ModeComponent = activeMode.component;
 
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const currentPath = modeId === "url" ? "/" : `/${modeId}`;
+      const meta = routeMeta[currentPath] || routeMeta["/"];
+
+      if (meta) {
+        document.title = meta.title;
+        const descMeta = document.querySelector('meta[name="description"]');
+        if (descMeta) descMeta.setAttribute("content", meta.description);
+
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute("content", meta.title);
+
+        const ogDesc = document.querySelector(
+          'meta[property="og:description"]',
+        );
+        if (ogDesc) ogDesc.setAttribute("content", meta.description);
+      }
+    }
+  }, [modeId]);
+
   return (
     <div class="container py-4">
       <div class="row g-4 justify-content-center">
@@ -157,9 +179,9 @@ export default function Interface({
                         <button
                           key={m.id}
                           type="button"
-                          class={`qr-mode-item ${modeId === m.id ? "active" : ""}`}
+                          class={`qr-mode-item ${(modeId === m.id && modeId !== "url") || (!params.mode && m.id === "url") ? "active" : ""}`}
                           onClick={() => {
-                            route("/" + m.id);
+                            route(m.id === "url" ? "/" : "/" + m.id);
                             setShowModeSwitcher(false);
                           }}
                         >

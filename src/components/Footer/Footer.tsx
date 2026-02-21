@@ -10,7 +10,7 @@ export default function Footer({ onShowHelp, showHelp, onHideHelp }) {
         <div class="mb-3 mx-auto" style="max-width: 600px;">
           <span class="branding">QR Coder</span> generates QR codes for{" "}
           <strong>
-            <a href="/url" class="type-link">
+            <a href="/" class="type-link">
               URLs
             </a>
             ,{" "}
