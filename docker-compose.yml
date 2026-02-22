@@ -1,0 +1,18 @@
+services:
+  web:
+    container_name: qr.kyd.au
+    build: .
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.qr-kyd.rule=Host(`qr.kyd.au`)"
+      - "traefik.http.routers.qr-kyd.entrypoints=websecure"
+      - "traefik.http.routers.qr-kyd.tls.certresolver=le"
+      - "traefik.http.services.qr-kyd.loadbalancer.server.port=80"
+      - "traefik.docker.network=traefik_default"
+    networks:
+      - traefik_default
+
+networks:
+  traefik_default:
+    external: true
