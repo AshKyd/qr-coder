@@ -4,10 +4,12 @@ import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import { routeMeta } from "./src/route-meta.js";
+import { faqItems } from "./src/components/About/faq.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const routes = [
+  "/about",
   "/wifi",
   "/vcard",
   "/calendar",
@@ -86,6 +88,51 @@ ${allRoutes
                 /<meta\s+property="og:description"\s+content="[^"]*"/,
                 `<meta property="og:description" content="${meta.description}"`,
               );
+              // Canonical and og:url, so each route is indexed under its own URL
+              const url = `${baseUrl}${route}`;
+              html = html.replace(
+                /<link\s+rel="canonical"\s+href="[^"]*"/,
+                `<link rel="canonical" href="${url}"`,
+              );
+              html = html.replace(
+                /<meta\s+property="og:url"\s+content="[^"]*"/,
+                `<meta property="og:url" content="${url}"`,
+              );
+
+              // Structured data: FAQ on /about, app description on the home page
+              const jsonLd =
+                route === "/about"
+                  ? {
+                      "@context": "https://schema.org",
+                      "@type": "FAQPage",
+                      mainEntity: faqItems.map(({ question, answer }) => ({
+                        "@type": "Question",
+                        name: question,
+                        acceptedAnswer: { "@type": "Answer", text: answer },
+                      })),
+                    }
+                  : route === "/"
+                    ? {
+                        "@context": "https://schema.org",
+                        "@type": "WebApplication",
+                        name: "QR Coder",
+                        url: baseUrl,
+                        applicationCategory: "UtilitiesApplication",
+                        operatingSystem: "Any",
+                        description: meta.description,
+                        offers: {
+                          "@type": "Offer",
+                          price: "0",
+                          priceCurrency: "USD",
+                        },
+                      }
+                    : null;
+              if (jsonLd) {
+                html = html.replace(
+                  "</head>",
+                  `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script></head>`,
+                );
+              }
               fs.writeFileSync(filePath, html);
             }
           }

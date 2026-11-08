@@ -9,6 +9,7 @@ import "./style.css";
 import Toolbar from "./components/Toolbar/Toolbar";
 import Interface from "./components/Interface/Interface";
 import Footer from "./components/Footer/Footer";
+import About from "./components/About/About";
 
 import { useState } from "preact/hooks";
 
@@ -22,6 +23,8 @@ export function App() {
         <Toolbar onOpenMenu={() => setShowModeSwitcher(true)} />
         <main>
           <Router>
+            {/* Must come before /:mode?, which would otherwise match /about */}
+            <About path="/about" />
             <Interface
               path="/:mode?"
               showModeSwitcher={showModeSwitcher}

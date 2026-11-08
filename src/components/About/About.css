@@ -1,0 +1,4 @@
+/* FAQ questions use the body sans font; the Doto heading font is too hard to read at this size */
+.qr-about h3 {
+  font-family: inherit;
+}

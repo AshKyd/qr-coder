@@ -1,8 +1,13 @@
 export const routeMeta = {
   "/": {
-    title: "QR Coder",
+    title: "Free QR Code Generator, No Expiry or Subscription | QR Coder",
     description:
-      "Fast, private, and powerful QR code generator. Generate QR codes for URLs, WiFi, vCards, Calendar events, and more, all locally in your browser.",
+      "Free QR codes that never expire. No subscription, no trial, no account. Make permanent QR codes for URLs, WiFi, vCards, Calendar events and more, locally in your browser.",
+  },
+  "/about": {
+    title: "Free Permanent QR Codes That Never Expire | QR Coder",
+    description:
+      "Why QR Coder codes are free forever: static QR codes with no expiry, no subscription and no tracking. Learn what QR codes are and how to replace an expired one.",
   },
   "/wifi": {
     title: "WiFi QR Code Generator | QR Coder",

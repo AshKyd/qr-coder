@@ -19,6 +19,17 @@ export default function Interstitial({ isOpen, onClose }) {
         </section>
 
         <section class="mb-4">
+          <h2 class="h6 fw-bold text-uppercase mb-2">Free forever</h2>
+          <p class="small text-muted mb-0">
+            Codes never expire and there is no subscription.{" "}
+            <a href="/about" onClick={onClose}>
+              Why it's free
+            </a>
+            .
+          </p>
+        </section>
+
+        <section class="mb-4">
           <h2 class="h6 fw-bold text-uppercase mb-2">Privacy</h2>
           <p class="small text-muted mb-0">
             Processing happens locally. It's a private way to generate codes

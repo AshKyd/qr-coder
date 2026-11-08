@@ -69,6 +69,10 @@ export default function Footer({ onShowHelp, showHelp, onHideHelp }) {
           >
             GitHub
           </a>
+          <span class="text-muted mx-1">&bull;</span>
+          <a href="/about" class="hover-link">
+            Free forever
+          </a>
           <PWAInstallButton />
           <span class="text-muted mx-1">&bull;</span>
           <button

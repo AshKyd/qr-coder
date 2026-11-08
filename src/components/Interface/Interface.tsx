@@ -1,7 +1,7 @@
 import { useState, useEffect } from "preact/hooks";
 import { useRoute, useLocation } from "preact-iso";
 import QRCode from "../QRCode/QRCode";
-import { routeMeta } from "../../route-meta";
+import { applyRouteMeta } from "../../utils/applyRouteMeta.js";
 import "./Interface.css";
 
 // Import Mode Components
@@ -116,24 +116,7 @@ export default function Interface({
   const ModeComponent = activeMode.component;
 
   useEffect(() => {
-    if (typeof document !== "undefined") {
-      const currentPath = modeId === "url" ? "/" : `/${modeId}`;
-      const meta = routeMeta[currentPath] || routeMeta["/"];
-
-      if (meta) {
-        document.title = meta.title;
-        const descMeta = document.querySelector('meta[name="description"]');
-        if (descMeta) descMeta.setAttribute("content", meta.description);
-
-        const ogTitle = document.querySelector('meta[property="og:title"]');
-        if (ogTitle) ogTitle.setAttribute("content", meta.title);
-
-        const ogDesc = document.querySelector(
-          'meta[property="og:description"]',
-        );
-        if (ogDesc) ogDesc.setAttribute("content", meta.description);
-      }
-    }
+    applyRouteMeta(modeId === "url" ? "/" : `/${modeId}`);
   }, [modeId]);
 
   return (
@@ -200,6 +183,10 @@ export default function Interface({
                   </Modal>
                 </div>
                 <p class="text-muted small mt-2 mb-0">{activeMode.explainer}</p>
+                <p class="text-muted small mt-1 mb-0">
+                  Free forever. No expiry, no account, no subscription.{" "}
+                  <a href="/about">Why it's free</a>
+                </p>
               </div>
 
               <hr />
